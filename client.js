@@ -6,13 +6,10 @@ const connect = function (callback) {
     port: 50541,
   });
 
-
   conn.on('connect', () => {
     callback();
     conn.write("Name: EGM");
   });
-
-  
 
   conn.on('data', (data) => {
     console.log(data.toString());
@@ -25,4 +22,4 @@ const connect = function (callback) {
   return conn;
 };
 
-module.exports = connect;
+module.exports = { connect };
