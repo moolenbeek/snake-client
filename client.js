@@ -1,13 +1,13 @@
 const net = require("net");
 
-const connect = function (callback) {
+const connect = function () {
   const conn = net.createConnection({
     host: '165.227.47.243',
     port: 50541,
   });
 
   conn.on('connect', () => {
-    callback();
+    console.log('Successfully connected to game server');
     conn.write("Name: EGM");
   });
 
