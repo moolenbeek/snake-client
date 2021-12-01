@@ -45,6 +45,15 @@ const handleUserInput = key => {
     clearInterval(setIntervalFunc);
     interval(d);
   }
+  if (key === "i") {
+    connection.write('Say: snek goes brrrr');
+  }
+  if (key === "o") {
+    connection.write('Say: ( ͡° ͜ʖ ͡°)');
+  }
+  if (key === 'p') {
+    connection.write('Say: Lorem ipsum dolor sit amet.');
+  }
 };
 
 module.exports = { setupInput };
