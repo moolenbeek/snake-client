@@ -1,4 +1,13 @@
-const setupInput = function () {
+let connection;
+let setIntervalFunc;
+
+const w = "Move: up";
+const a = "Move: left";
+const s = "Move: down";
+const d = "Move: right";
+
+const setupInput = conn => {
+  connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
@@ -9,11 +18,32 @@ const setupInput = function () {
   return stdin;
 };
 
-const handleUserInput = function (key) {
+const handleUserInput = key => {
+  const interval = function(key) {
+    setIntervalFunc = setInterval(() => {
+      connection.write(key);
+    }, 100);
+  };
   // \u0003 maps to ctrl+c input
   if (key === '\u0003') {
     console.log('disconnecting ...')
     process.exit();
+  }
+  if (key === 'w') {
+    clearInterval(setIntervalFunc);
+    interval(w);
+  }
+  if (key === 'a') {
+    clearInterval(setIntervalFunc);
+    interval(a);
+  }
+  if (key === 's') {
+    clearInterval(setIntervalFunc);
+    interval(s);
+  }
+  if (key === 'd') {
+    clearInterval(setIntervalFunc);
+    interval(d);
   }
 };
 
